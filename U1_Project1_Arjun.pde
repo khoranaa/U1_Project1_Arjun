@@ -9,7 +9,7 @@ int yDirection = -1;
 float xballSpeed = 10;
 float yballSpeed = 10;
 float xbatSpeed = 20;
-float ybatSpeed = 20;
+float ybatSpeed = 50;
 int rad = 20;
 
 void setup()
@@ -42,12 +42,12 @@ void draw()
   line(715,460,1195,460);
   
     
-    if (x3 > width-rad|| x3 < rad) 
+    if (x3 > width-rad || x3 < rad || collision()) 
     {
       xDirection *= -1;
     }
 
-    if (y3 > height-rad || y3 < rad)
+    if (y3 > height-rad || y3 < rad || collision())
     {
       yDirection *= -1;
     }
@@ -67,8 +67,33 @@ void draw()
   fill(255,0,0);
   rect(x1,y1,30,100);
   
+  
+  
+  
+  
+
  }
 
+    boolean collision() {
+      
+      boolean returnValue = false; // assume there is no collision
+      
+      if ((x3 >= x1 - 30) && (x3 <= x1 + 30)) {
+        if ((y3 >= y1) && (y3 <= y1 + 100)) {
+            returnValue = true;
+        }
+      }
+      
+      if ((x3 >= x2 - 40) && (x3 <= x2 + 50)) {
+        if ((y3 >= y2) && (y3 <= y2 + 100)) {
+            returnValue = true;
+        }
+      }
+      
+      
+      return returnValue;
+    }
+    
 void keyPressed()
 {
 
@@ -100,28 +125,33 @@ void keyPressed()
       } //<>//
 // Make rackets move when letter keys are held. 
     }
+    
     if(key == 'w')
     {
        yDirection = -1;
        y2 = y2 + (yDirection*ybatSpeed);
+       fill(0,0,255);
        rect(x2,y2,30,100);
     }
     else if (key == 's')
     {
        yDirection = 1;
        y2 = y2 + (yDirection*ybatSpeed);
+       fill(0,0,255);
        rect(x2,y2,30,100);
     }
     else if (key == 'a')
     {
        xDirection = -1;
        x2 = x2 + (xDirection*xbatSpeed);
+       fill(0,0,255);
        rect(x2,y2,30,100);
     }
     else if(key == 'd')
     {
        xDirection = 1;
        x2 = x2 + (xDirection*xbatSpeed);
+       fill(0,0,255);
        rect(x2,y2,30,100);
     }
 }
