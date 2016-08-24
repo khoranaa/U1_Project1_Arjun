@@ -6,8 +6,8 @@ float x3 = 150;
 float y3 = 460;
 int xDirection = 1;
 int yDirection = -1;
-float xballSpeed = 10;
-float yballSpeed = 10;
+float xballSpeed = 5;
+float yballSpeed = 5;
 float xbatSpeed = 20;
 float ybatSpeed = 50;
 int rad = 20;
@@ -42,7 +42,9 @@ void draw()
   line(715,460,1195,460);
   
     
-    if (x3 > width-rad || x3 < rad || collision()) 
+    //if (x3 > width-rad || x3 < rad || collision()) 
+    
+    if (collision()) 
     {
       xDirection *= -1;
     }
@@ -52,6 +54,22 @@ void draw()
       yDirection *= -1;
     }
 
+    if (x3 > width-rad)
+    {
+      x3 = 150;
+      y3 = 380;
+      fill(255,165,0);
+      ellipse(x3,y3,20,20);
+    }
+    if (x3 < rad)
+    {
+      x3 = 1225;
+      y3 = 380;
+      fill(255,165,0);
+      ellipse(x3,y3,20,20);
+    } 
+    
+    
     x3 = x3 + (xballSpeed * xDirection);
     y3 = y3 + (yballSpeed * yDirection);
     
@@ -67,8 +85,40 @@ void draw()
   fill(255,0,0);
   rect(x1,y1,30,100);
   
-  
-  
+  if (keyPressed == true) 
+  {
+    if(key == 'w' && y2 > 50)
+    {
+       yDirection = -1;
+       y2 = y2 + (yDirection*ybatSpeed);
+       fill(0,0,255);
+       rect(x2,y2,30,100);
+    }
+    else if (key == 's' && y2 < 800)
+    {
+       yDirection = 1;
+       y2 = y2 + (yDirection*ybatSpeed);
+       fill(0,0,255);
+       rect(x2,y2,30,100);
+    }
+    else if (key == 'a' && x2 > 30)
+    {
+       xDirection = -1;
+       x2 = x2 + (xDirection*xbatSpeed);
+       fill(0,0,255);
+       rect(x2,y2,30,100);
+    }
+    else if(key == 'd')
+    {
+       xDirection = 1;
+       x2 = x2 + (xDirection*xbatSpeed);
+       fill(0,0,255);
+       rect(x2,y2,30,100);
+    }
+  }
+
+
+    
   
   
 
@@ -99,13 +149,13 @@ void keyPressed()
 
   if(key == CODED) 
     {
-      if(keyCode == UP)   
+      if(keyCode == UP && y1 > 50)   
       {
          yDirection = -1;
          y1 = y1 + (yDirection*ybatSpeed);
          rect(x1,y1,30,100);
       }
-      else if(keyCode == DOWN)
+      else if(keyCode == DOWN && y1 < 800)
       {
          yDirection = 1;
          y1 = y1 + (yDirection*ybatSpeed);
@@ -117,7 +167,7 @@ void keyPressed()
          x1 = x1 + (xDirection*xbatSpeed);
          rect(x1,y1,30,100);
       }
-      else if(keyCode == RIGHT)
+      else if(keyCode == RIGHT && x1 < 1380)
       {
          xDirection = 1;
          x1 = x1 + (xDirection*xbatSpeed);
@@ -126,32 +176,5 @@ void keyPressed()
 // Make rackets move when letter keys are held. 
     }
     
-    if(key == 'w')
-    {
-       yDirection = -1;
-       y2 = y2 + (yDirection*ybatSpeed);
-       fill(0,0,255);
-       rect(x2,y2,30,100);
-    }
-    else if (key == 's')
-    {
-       yDirection = 1;
-       y2 = y2 + (yDirection*ybatSpeed);
-       fill(0,0,255);
-       rect(x2,y2,30,100);
-    }
-    else if (key == 'a')
-    {
-       xDirection = -1;
-       x2 = x2 + (xDirection*xbatSpeed);
-       fill(0,0,255);
-       rect(x2,y2,30,100);
-    }
-    else if(key == 'd')
-    {
-       xDirection = 1;
-       x2 = x2 + (xDirection*xbatSpeed);
-       fill(0,0,255);
-       rect(x2,y2,30,100);
-    }
+
 }
