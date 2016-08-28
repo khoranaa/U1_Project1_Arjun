@@ -112,8 +112,8 @@ void draw() //draws the things you want the code to do
       
     } 
       
-    x3 = x3 + (xballSpeed * xDirectionBall); //what the ball would have to do when moving left to right
-    y3 = y3 + (yballSpeed * yDirectionBall); //what the ball would have to do when moving up and down
+    x3 = x3 + (random(xballSpeed, 2.5*xballSpeed) * xDirectionBall); //what the ball would have to do when moving left to right
+    y3 = y3 + (random(yballSpeed, 2.5*yballSpeed) * yDirectionBall); //what the ball would have to do when moving up and down
     
   noStroke();
   fill(255,165,0); 
